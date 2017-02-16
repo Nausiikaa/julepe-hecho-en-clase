@@ -145,7 +145,6 @@ public class Juego
     public void jugar()
     {
         repartir();
-        jugadores[0].verCartasJugador();
         Scanner scan = new Scanner(System.in);
         int repeticion = 0;
         String nombreJugadorHumano = jugadores[0].getNombre();
@@ -154,6 +153,7 @@ public class Juego
             int index = 0;
             Baza bazaActual = new Baza(jugadores.length,paloQuePinta);
             while(trampeando == false){
+                jugadores[0].verCartasJugador();
                 System.out.println("Introduce la carta que deseas tirar");
                 String cartaATirar = scan.nextLine();
                 Carta cartaAGuardar = jugadores[index].tirarCarta(cartaATirar);

@@ -128,7 +128,7 @@ public class Jugador
                                             Carta cartaQueVaGanando,
                                             int paloQuePinta)
     {
-        return tirarCartaAleatoria();        
+        return tirarCartaAleatoria();
     }
     
     
