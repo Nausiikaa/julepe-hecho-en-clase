@@ -11,7 +11,8 @@ public class Juego
 {
     private Jugador[] jugadores;
     private Mazo mazo;
-    private int paloQuePinta;
+    private Palo paloQuePinta;
+    private static final int NUMERO_DE_RONDAS = 5;
 
     /**
      * Constructor de la clase Juego
@@ -64,7 +65,7 @@ public class Juego
      *
      * @return El palo que pinta tras repartir
      */
-    private int repartir() 
+    private Palo repartir() 
     {
         mazo.barajar();
 
@@ -78,16 +79,16 @@ public class Juego
 
         paloQuePinta = nuevaCarta.getPalo();
         switch (paloQuePinta) {
-            case 0:
+            case OROS:
             System.out.println("Pintan oros");
             break;
-            case 1:
+            case COPAS:
             System.out.println("Pintan copas");
             break;
-            case 2:
+            case ESPADAS:
             System.out.println("Pintan espadas");
             break;
-            case 3:
+            case BASTOS:
             System.out.println("Pintan bastos");
             break;
         }
@@ -104,19 +105,16 @@ public class Juego
      */
     public int encontrarPosicionJugadorPorNombre(String nombre)
     {
-        String nombreABuscar = nombre;
         int index = 0;
-        boolean buscando = false;
-        while(index < jugadores.length && buscando == false){
+        int posicionADevolver = -1;
+        while(index < jugadores.length && posicionADevolver == -1){
             String nombreActual = jugadores[index].getNombre();
-            if(nombreActual.equals(nombreABuscar)){
-                buscando = true;
+            if(nombreActual.equals(nombre)){
+                posicionADevolver = index;
             }
-            else{
-                index++;
-            }
+            index++;
         }
-        return index;
+        return posicionADevolver;
     }
 
     /**
@@ -148,7 +146,7 @@ public class Juego
         Scanner scan = new Scanner(System.in);
         int repeticion = 0;
         String nombreJugadorHumano = jugadores[0].getNombre();
-        while(repeticion < 5) {
+        while(repeticion < NUMERO_DE_RONDAS) {
             boolean trampeando = false;
             int index = 0;
             Baza bazaActual = new Baza(jugadores.length,paloQuePinta);
