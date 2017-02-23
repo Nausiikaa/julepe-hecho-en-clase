@@ -68,7 +68,6 @@ public class Juego
     private Palo repartir() 
     {
         mazo.barajar();
-
         Carta nuevaCarta = null;
         for (int cartaARepartir = 0; cartaARepartir < 5; cartaARepartir++) {            
             for (int jugadorActual = 0; jugadorActual < jugadores.length; jugadorActual++) {
@@ -76,23 +75,8 @@ public class Juego
                 jugadores[jugadorActual].recibirCarta(nuevaCarta);
             }
         }
-
         paloQuePinta = nuevaCarta.getPalo();
-        switch (paloQuePinta) {
-            case OROS:
-            System.out.println("Pintan oros");
-            break;
-            case COPAS:
-            System.out.println("Pintan copas");
-            break;
-            case ESPADAS:
-            System.out.println("Pintan espadas");
-            break;
-            case BASTOS:
-            System.out.println("Pintan bastos");
-            break;
-        }
-
+        System.out.println("Pintan " + paloQuePinta.toString().toLowerCase());
         return paloQuePinta;           
     }
 
@@ -165,8 +149,9 @@ public class Juego
             }
             index++;
             while(index < jugadores.length){
-                Carta cartaAleatoriaATirar=jugadores[index].tirarCartaAleatoria();
+                Carta cartaAleatoriaATirar=jugadores[index].tirarCartaInteligentemente(bazaActual.getPaloPrimeraCartaDeLaBaza(),bazaActual.cartaQueVaGanandoLaBaza(),paloQuePinta);
                 bazaActual.addCarta(cartaAleatoriaATirar,jugadores[index].getNombre());
+                jugadores[index].verCartasJugador();
                 index++;
             }
             String jugadorGanador =bazaActual.nombreJugadorQueVaGanandoLaBaza();

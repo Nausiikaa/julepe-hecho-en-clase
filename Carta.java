@@ -36,23 +36,7 @@ public class Carta
         String textoADevolver = "";
 
         String textoValor = Integer.toString(valor);
-        String textoPalo = "";
-
-        switch (palo) {
-            case OROS:
-            textoPalo = "oros";
-            break;
-            case COPAS:
-            textoPalo = "copas";
-            break;
-            case ESPADAS:
-            textoPalo = "espadas";
-            break;
-            case BASTOS:
-            textoPalo = "bastos";
-            break;
-        }
-
+        String textoPalo = palo.toString().toLowerCase();
         switch (valor) {
             case 1:
             textoValor = "as";
